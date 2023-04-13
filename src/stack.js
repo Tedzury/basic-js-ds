@@ -21,7 +21,9 @@ class Stack {
   }
 
   pop() {
+    let elem = this.stack[this.stack.length - 1]
     this.stack.pop()
+    return elem
   }
 
   peek() {
