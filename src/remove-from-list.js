@@ -25,30 +25,21 @@ class ListNode {
   }
 }
 
-let list;
-
 function removeKFromList(l, k) {
-  list = LinkedList();
-  for (let i = 0; i < l.length; i++) {
-    list.add(l[i])
-  }
-  for( let i = 0; i < list.length; i ++) {
-    list.remove(k)
+
+  let list = LinkedList();
+  let current = l;
+
+  while (current) {
+    if ( current.value !== k) {list.add(current.value)}
+    current = current.next
   }
 
-  let out = list.output()
-  list = null;
-
-  return out
+  return list.head
 }
 
-// const l = [3, 1, 2, 3, 4, 5];
-
-// const k = 3;
-
 const LinkedList = () => {
-  
-  return {
+  return  {
   head: null,
   length: 0,
   
@@ -66,85 +57,10 @@ const LinkedList = () => {
     }
 
     this.length++;
-  },
-  removeAt(position) {
-    if (position < 0 || position >= this.length) {
-      return null;
-    }
-
-    let current = this.head;
-
-    if (position === 0) {
-      this.head = current.next;
-    } else {
-      let prev = null;
-      let index = 0;
-
-      while (index < position) {
-        prev = current;
-        current = current.next;
-        index++;
-      }
-
-      prev.next = current.next;
-    }
-
-    this.length--;
-    return current.value;
-  },
-  remove(element) {
-
-    const positionOfElement = this.findElement(element)
-
-    if (positionOfElement < 0 || positionOfElement >= this.length) {
-      return null;
-    }
-
-    let current = this.head;
-
-    if (positionOfElement === 0) {
-      this.head = current.next;
-    } else {
-      let prev = null;
-      let index = 0;
-
-      while (index < positionOfElement) {
-        prev = current;
-        current = current.next;
-        index++;
-      }
-
-      prev.next = current.next;
-    }
-
-    this.length--;
-    return current.value;
-  },
-
-  findElement(element) {
-    let current = this.head;
-    let index = 0;
-
-    while (current) {
-      if (current.value === element) {
-        return index;
-      }
-
-      current = current.next;
-      index++;
-    }
-
-    return -1;
-  },
-  output() {
-
-    let current = this.head;
-    return current
   }
 }
 }
 
-console.log(removeKFromList([3, 1, 2, 3, 4, 5], 3))
 
 // function convertArrayToList(arr) {
 //   return arr.reverse().reduce((acc, cur) => {
@@ -157,9 +73,12 @@ console.log(removeKFromList([3, 1, 2, 3, 4, 5], 3))
 //     return new ListNode(cur);
 //   }, null);
 // }
-// const expected = convertArrayToList([1, 2, 4, 5]);
 
-// console.log(expected)
+// const initial = convertArrayToList([3, 1, 2, 3, 4, 5]);
+
+// // console.log(initial)
+// removeKFromList(initial, 3)
+
 
 module.exports = {
   removeKFromList

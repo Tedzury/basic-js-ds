@@ -13,21 +13,34 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.stack = [];
+  }
+  push(elem) {
+    this.stack.push(elem)
   }
 
   pop() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    this.stack.pop()
   }
 
   peek() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let max = Number.MIN_VALUE;;
+    this.stack.forEach(numb => {
+      if (numb > max) max = numb
+    })
+    return max
   }
 }
+
+const stack = new Stack();
+
+stack.push(5);
+stack.push(6);
+stack.push(7);
+console.log(stack.peek());
+stack.pop();
+console.log(stack.peek());
 
 module.exports = {
   Stack
